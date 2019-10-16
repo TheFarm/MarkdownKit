@@ -662,6 +662,7 @@
 					};
 					B64AF645220349900048439D = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1110;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -1217,7 +1218,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Example-Appkit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1239,7 +1240,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Example-Appkit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

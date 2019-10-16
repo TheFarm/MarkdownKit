@@ -8,7 +8,6 @@
 import Foundation
 
 open class MarkdownQuote: MarkdownLevelElement {
-
   fileprivate static let regex = "^(\\>{1,%@})\\s*(.+)$"
 
   open var maxLevel: Int
@@ -16,6 +15,7 @@ open class MarkdownQuote: MarkdownLevelElement {
   open var color: MarkdownColor?
   open var separator: String
   open var indicator: String
+  open var customAttributes: [NSAttributedString.Key : AnyObject]?
 
   open var regex: String {
     let level: String = maxLevel > 0 ? "\(maxLevel)" : ""
@@ -23,12 +23,14 @@ open class MarkdownQuote: MarkdownLevelElement {
   }
 
   public init(font: MarkdownFont? = nil, maxLevel: Int = 0, indicator: String = ">",
-              separator: String = "  ", color: MarkdownColor? = nil) {
+              separator: String = "  ", color: MarkdownColor? = nil,
+              customAttributes: [NSAttributedString.Key: AnyObject]? = nil) {
     self.maxLevel = maxLevel
     self.indicator = indicator
     self.separator = separator
     self.font = font
     self.color = color
+    self.customAttributes = customAttributes
   }
 
 

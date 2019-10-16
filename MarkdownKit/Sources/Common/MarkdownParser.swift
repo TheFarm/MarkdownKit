@@ -71,7 +71,8 @@ open class MarkdownParser {
 
   public let font: MarkdownFont
   public let color: MarkdownColor
-  
+  public var customAttributes: [NSAttributedString.Key: AnyObject]?
+
   // MARK: Legacy Initializer
   @available(*, deprecated, renamed: "init", message: "This constructor will be removed soon, please use the new opions constructor")
   public convenience init(automaticLinkDetectionEnabled: Bool,
@@ -84,19 +85,20 @@ open class MarkdownParser {
   // MARK: Initializer
   public init(font: MarkdownFont = MarkdownParser.defaultFont,
               color: MarkdownColor = MarkdownParser.defaultColor,
+              customAttributes: [NSAttributedString.Key: AnyObject]? = nil,
               enabledElements: EnabledElements = .all,
               customElements: [MarkdownElement] = []) {
     self.font = font
     self.color = color
     
-    header = MarkdownHeader(font: font)
-    list = MarkdownList(font: font)
-    quote = MarkdownQuote(font: font)
-    link = MarkdownLink(font: font)
-    automaticLink = MarkdownAutomaticLink(font: font)
-    bold = MarkdownBold(font: font)
-    italic = MarkdownItalic(font: font)
-    code = MarkdownCode(font: font)
+    header = MarkdownHeader(font: font, color: color, customAttributes: customAttributes)
+    list = MarkdownList(font: font, color: color, customAttributes: customAttributes)
+    quote = MarkdownQuote(font: font, color: color, customAttributes: customAttributes)
+    link = MarkdownLink(font: font, customAttributes: customAttributes)
+    automaticLink = MarkdownAutomaticLink(font: font, customAttributes: customAttributes)
+    bold = MarkdownBold(font: font, color: color, customAttributes: customAttributes)
+    italic = MarkdownItalic(font: font, color: color, customAttributes: customAttributes)
+    code = MarkdownCode(font: font, color: color, customAttributes: customAttributes)
 
     self.escapingElements = [codeEscaping, escaping]
     self.unescapingElements = [code, unescaping]
@@ -111,7 +113,7 @@ open class MarkdownParser {
   }
   
   open func removeCustomElement(_ element: MarkdownElement) {
-    guard let index = customElements.index(where: { someElement -> Bool in
+    guard let index = customElements.firstIndex(where: { someElement -> Bool in
       return element === someElement
     }) else {
       return

@@ -13,9 +13,10 @@ open class MarkdownCode: MarkdownCommonElement {
   
   open var font: MarkdownFont?
   open var color: MarkdownColor?
+  open var customAttributes: [NSAttributedString.Key : AnyObject]?
   open var textHighlightColor: MarkdownColor?
   open var textBackgroundColor: MarkdownColor?
-
+  
   open var regex: String {
     return MarkdownCode.regex
   }
@@ -23,9 +24,11 @@ open class MarkdownCode: MarkdownCommonElement {
   public init(font: MarkdownFont? = MarkdownCode.defaultFont,
               color: MarkdownColor? = nil,
               textHighlightColor: MarkdownColor? = MarkdownCode.defaultHighlightColor,
-              textBackgroundColor: MarkdownColor? = MarkdownCode.defaultBackgroundColor) {
+              textBackgroundColor: MarkdownColor? = MarkdownCode.defaultBackgroundColor,
+              customAttributes: [NSAttributedString.Key: AnyObject]? = nil) {
     self.font = font
     self.color = color
+    self.customAttributes = customAttributes
     self.textHighlightColor = textHighlightColor
     self.textBackgroundColor = textBackgroundColor
   }

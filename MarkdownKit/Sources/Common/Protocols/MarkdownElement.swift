@@ -25,9 +25,9 @@ public extension MarkdownElement {
         let regex = try regularExpression()
         while let regexMatch =
           regex.firstMatch(in: attributedString.string,
-                                               options: .withoutAnchoringBounds,
-                                               range: NSRange(location: location,
-                                                length: attributedString.length - location))
+                           options: .withoutAnchoringBounds,
+                           range: NSRange(location: location,
+                                          length: attributedString.length - location))
         {
           let oldLength = attributedString.length
           match(regexMatch, attributedString: attributedString)

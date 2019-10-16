@@ -16,6 +16,7 @@ open class MarkdownLink: MarkdownLinkElement {
   
   open var font: MarkdownFont?
   open var color: MarkdownColor?
+  open var customAttributes: [NSAttributedString.Key : AnyObject]?
   
   open var regex: String {
     return MarkdownLink.regex
@@ -25,9 +26,11 @@ open class MarkdownLink: MarkdownLinkElement {
     return try NSRegularExpression(pattern: regex, options: .dotMatchesLineSeparators)
   }
   
-  public init(font: MarkdownFont? = nil, color: MarkdownColor? = MarkdownLink.defaultColor) {
+  public init(font: MarkdownFont? = nil, color: MarkdownColor? = MarkdownLink.defaultColor,
+              customAttributes: [NSAttributedString.Key: AnyObject]? = nil) {
     self.font = font
     self.color = color
+    self.customAttributes = customAttributes
   }
   
   
